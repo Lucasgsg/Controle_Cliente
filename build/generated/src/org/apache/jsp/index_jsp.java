@@ -3,6 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import dominio.Cliente;
+import util.HibernateUtil;
+import org.hibernate.*;
+import java.util.*;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -43,14 +47,50 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <title>Exemplo</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>Hello World!</h1>\n");
+      out.write("        ");
+
+            Session sessao = HibernateUtil.getSessionFactory().openSession();
+            Transaction transacao = sessao.beginTransaction();
+
+            //Salva Registro na Tabela
+            Cliente cli = new Cliente();
+            cli.setIdeCli(1);
+            cli.setNomCli("Ana Luiza");
+            cli.setTelCli("1234-8765");
+            sessao.save(cli);
+            out.print("Registro Salvo com Sucesso!");
+            out.print("<br /> <br />");
+
+            transacao.commit();
+            sessao.close();
+
+            Session novaSessao = HibernateUtil.getSessionFactory().openSession();
+            Transaction novaTransacao = novaSessao.beginTransaction();
+
+            //Consulta um Registro na Tabela
+            Query select = novaSessao.createQuery("from Cliente as cli where cli.ideCli = :id");
+            select.setInteger("id", 1);
+            List objetos = select.list();
+            Cliente cliente = (Cliente) objetos.get(0);
+            out.println("ID: " + cliente.getIdeCli() + "<br />");
+            out.println("NOME: " + cliente.getNomCli() + "<br />");
+            out.println("TELEFONE: " + cliente.getTelCli() + "<br />");
+
+            novaTransacao.commit();
+            novaSessao.close();
+
+        
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
-    <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+    <!-- Configura a Conexao com o BD -->
+    <property name="hibernate.dialect">org.com.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/controle_cliente</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
+    <!-- Configura o provedor de POOL  de Conexoes C3P0-->
+    <property name="hibernate.c3p0.min_size">10</property>
+    <property name="hibernate.c3p0.max_size">20</property>
+    <property name="hibernate.c3p0.timeout">300</property>
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <property name="hibernate.c3p0.idle_test_period">2000</property>
+    <!-- Configura a exibição em LOG das instruções SQL executadas pelo HIBERNATE-->
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">false</property>
+    <!-- Informa o nome das classes de mapeamento objeto/relacional -->
+    <mapping resource="dominio/Cliente.hbm.xml"/>
+    <mapping/>
   </session-factory>
 </hibernate-configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="dominio/Cliente" table="cliente" catalog="controle_cliente">
+        <id name="ideCli" type="int">
+            <column name="IdeCli"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="nomCli" type="String">
+            <column name="NomCli" length="50"/>
+        </property>
+        <property name="telCli" type="String">
+            <column name="TelCli" length="15"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -7,10 +7,10 @@
             <column name="IdeCli"/>
             <generator class="assigned"/>
         </id>
-        <property name="nomCli" type="String">
+        <property name="nomCli" type="string">
             <column name="NomCli" length="50"/>
         </property>
-        <property name="telCli" type="String">
+        <property name="telCli" type="string">
             <column name="TelCli" length="15"/>
         </property>
     </class>

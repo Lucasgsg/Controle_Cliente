@@ -3,11 +3,11 @@
 <hibernate-configuration>
   <session-factory>
     <!-- Configura a Conexao com o BD -->
-    <property name="hibernate.dialect">org.com.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/controle_cliente</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.password"></property>
     <!-- Configura o provedor de POOL  de Conexoes C3P0-->
     <property name="hibernate.c3p0.min_size">10</property>
     <property name="hibernate.c3p0.max_size">20</property>
@@ -19,6 +19,5 @@
     <property name="hibernate.format_sql">false</property>
     <!-- Informa o nome das classes de mapeamento objeto/relacional -->
     <mapping resource="dominio/Cliente.hbm.xml"/>
-    <mapping/>
   </session-factory>
 </hibernate-configuration>
